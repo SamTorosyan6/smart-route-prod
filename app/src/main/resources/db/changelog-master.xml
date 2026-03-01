@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <include file="db/changelog/07-create-region.xml"/>
+    <include file="db/changelog/08-create-brand.xml"/>
+    <include file="db/changelog/09-create-model.xml"/>
+    <include file="db/changelog/01-create-user.xml"/>
+    <include file="db/changelog/02-create-trip.xml"/>
+    <include file="db/changelog/03-create-booking.xml"/>
+    <include file="db/changelog/04-create-feedback.xml"/>
+    <include file="db/changelog/05-create-car.xml"/>
+    <include file="db/changelog/06-create-car-photo.xml"/>
+
+</databaseChangeLog>

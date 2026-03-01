@@ -1,0 +1,26 @@
+package com.example.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "car_photo")
+public class CarPhoto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String photoUrl;
+
+    @Column(nullable = false)
+    private boolean isMain;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_id", nullable = false)
+    private Car car;
+}
