@@ -19,6 +19,7 @@ public class Region {
     @Column(nullable = false)
     private String name;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "region")
     private List<User> users;
 }

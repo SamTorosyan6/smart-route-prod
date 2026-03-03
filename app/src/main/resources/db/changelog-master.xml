@@ -12,5 +12,7 @@
     <include file="db/changelog/04-create-feedback.xml"/>
     <include file="db/changelog/05-create-car.xml"/>
     <include file="db/changelog/06-create-car-photo.xml"/>
+    <include file="db/changelog/010-update-table-user.xml"/>
+    <include file="db/changelog/011-insert-admin-user.xml"/>
 
 </databaseChangeLog>
