@@ -36,11 +36,13 @@ public class PassengerController {
     @GetMapping("/register/passenger")
     public String registerPassenger(@RequestParam(required = false) String msg, ModelMap modelMap) {
         modelMap.addAttribute("msg",msg);
+        modelMap.addAttribute("regions",regionRepository.findAll());
         return "passengerPackage/registerPassenger";
     }
 
     @PostMapping("/register/passenger")
-    public String registerPassenger(@ModelAttribute User user){
+    public String registerPassenger(@ModelAttribute User user,
+                                    @RequestParam Integer regionId){
         if(userService.findByEmail(user.getEmail()).isPresent()){
             return "redirect:/register/passenger?msg=Email already in exists!";
         }
@@ -49,8 +51,8 @@ public class PassengerController {
         user.setBlocked(false);
         user.setRatingAverage(BigDecimal.ZERO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRegion(regionRepository.findById(1).orElseThrow(()
-                ->new RuntimeException("Region not found!")));
+        user.setRegion(regionRepository.findById(regionId)
+                .orElseThrow(() -> new RuntimeException("Region not found!")));
 
         userService.save(user);
         return "redirect:/loginPage?msg=Registration Successful!";

@@ -14,5 +14,6 @@
     <include file="db/changelog/06-create-car-photo.xml"/>
     <include file="db/changelog/010-update-table-user.xml"/>
     <include file="db/changelog/011-insert-admin-user.xml"/>
+    <include file="db/changelog/012-insert-regions.xml"/>
 
 </databaseChangeLog>

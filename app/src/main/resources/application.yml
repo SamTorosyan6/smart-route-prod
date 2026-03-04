@@ -12,9 +12,21 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-
   servlet:
     multipart:
+      enabled: true
       max-file-size: 10MB
+      max-request-size: 50MB
   profiles:
     active:
+
+server:
+  tomcat:
+    max-swallow-size: -1
+    max-http-form-post-size: -1
+    max-part-count: -1
+
+app:
+  upload:
+    path: uploads\car-photos\
+    license-path: uploads\licenses\

@@ -22,6 +22,15 @@ Register Passenger
     <input type="radio" id="female" name="gender" value="FEMALE" required>
     <label for="female">Female</label><br>
 
+    Region:
+    <select name="regionId" required>
+        <option value="">-- Select Region --</option>
+        <option th:each="region : ${regions}"
+                th:value="${region.id}"
+                th:text="${region.name}">
+        </option>
+    </select><br>
+
     <input type="submit" value="Register">
 </form>
 </body>

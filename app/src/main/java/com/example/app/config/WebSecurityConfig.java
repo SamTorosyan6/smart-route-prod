@@ -28,8 +28,11 @@ public class WebSecurityConfig {
                                         "/register/driver",
                                         "/register/passenger",
                                         "/css/**",
+                                        "/uploads/**",
                                         "/js/**").permitAll()
                                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
+                                .requestMatchers("/driver/**").hasAnyAuthority("DRIVER")
+                                .requestMatchers("/passenger/**").hasAnyAuthority("PASSENGER")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->

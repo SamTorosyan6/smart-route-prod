@@ -3,6 +3,8 @@ package com.example.app.controller;
 import com.example.app.service.security.SpringUser;
 import com.example.model.Role;
 import com.example.model.UserStatus;
+import com.example.repository.CarPhotoRepository;
+import com.example.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
+
+    private final CarRepository carRepository;
+    private final CarPhotoRepository carPhotoRepository;
 
     @GetMapping("/")
     public String mainPage(@AuthenticationPrincipal SpringUser springUser, ModelMap modelMap) {
@@ -29,6 +34,19 @@ public class UserController {
         }
 
         Role role = springUser.getUser().getRole();
+
+        if (role == Role.DRIVER) {
+
+            return carRepository.findByDriverId(springUser.getUser().getId())
+                    .map(car -> {
+                        boolean hasPhotos = !carPhotoRepository.findByCarId(car.getId()).isEmpty();
+                        if (!hasPhotos) {
+                            return "redirect:/driver/uploadCarPhotos";
+                        }
+                        return "redirect:/driver/home";
+                    })
+                    .orElse("redirect:/driver/uploadCarPhotos");
+        }
 
         switch(role) {
             case ADMIN:
