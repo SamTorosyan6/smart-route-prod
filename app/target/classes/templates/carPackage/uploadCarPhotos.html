@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Car Photos</title>
+</head>
+<body>
+
+<h2>Upload Car Photos</h2>
+<p>Please upload at least one photo of your car. Admin will review your registration after this step.</p>
+
+<span th:if="${msg} != null">
+    <span style="color: red" th:text="${msg}"></span><br>
+</span>
+
+<p>Car: <strong th:text="${car.brand.name}"></strong> — <strong th:text="${car.numberPlate}"></strong></p>
+
+<form th:action="@{/driver/uploadCarPhotos}" method="post" enctype="multipart/form-data">
+
+    Photos (can select multiple):
+    <input type="file" name="photos" multiple accept="image/*" required><br><br>
+
+    Main photo index (0 = first photo):
+    <input type="number" name="mainPhotoIndex" value="0" min="0"><br><br>
+
+    <input type="submit" value="Upload Photos">
+</form>
+
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.example.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -38,32 +39,35 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    @Column(nullable = false)
+    @Column(name = "is_blocked",nullable = false)
     private boolean isBlocked;
 
-    @Column(nullable = false)
+    @CreationTimestamp
+    @Column(name = "created_at",   nullable = false,updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "profile_photo")
     private String profilePhoto;
 
-    @Column(nullable = false)
+    @Column(name = "date_of_birth",nullable = false)
     private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gender gender;
 
-    @Column(unique = true)
+    @Column(name = "driver_license_photo",unique = true)
     private String driverLicensePhoto;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserStatus status;
 
-    @Column(precision = 3, scale = 2)
+    @Column(name = "rating_average",precision = 4, scale = 2)
     private BigDecimal ratingAverage = BigDecimal.ZERO;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @ManyToOne
     @JoinColumn(name = "region_id", nullable = false)
     private Region region;
 

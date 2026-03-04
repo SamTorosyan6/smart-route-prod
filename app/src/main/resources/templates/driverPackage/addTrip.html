@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Trip</title>
+</head>
+<body>
+
+<h2>Add New Trip</h2>
+
+<form th:action="@{/addTrip}" method="post">
+
+    From City: <input type="text" name="fromCity" required><br>
+    To City: <input type="text" name="toCity" required><br>
+    Departure Time: <input type="datetime-local" name="departureTime" required><br>
+    Total Seats: <input type="number" name="totalSeats" min="1" max="8" required><br>
+    Price Per Seat: <input type="number" name="pricePerSeat" step="500" min="100" required><br>
+    Rules: <textarea name="rules"></textarea><br>
+
+    <input type="checkbox" id="smokingAllowed" name="smokingAllowed" value="true">
+    <label for="smokingAllowed">Smoking Allowed</label><br>
+
+    <input type="checkbox" id="petsAllowed" name="petsAllowed" value="true">
+    <label for="petsAllowed">Pets Allowed</label><br>
+
+    <input type="checkbox" id="baggageAllowed" name="baggageAllowed" value="true">
+    <label for="baggageAllowed">Baggage Allowed</label><br>
+
+    <input type="checkbox" id="eatAllowed" name="eatAllowed" value="true">
+    <label for="eatAllowed">Eating Allowed</label><br>
+
+    <input type="submit" value="Add Trip">
+</form>
+
+</body>
+</html>

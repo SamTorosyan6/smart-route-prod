@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>student-portal-modular</artifactId>
+    <artifactId>smart-route-prod</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -20,6 +20,5 @@
         <module>persistence</module>
         <module>common</module>
         <module>app</module>
-        <module>common</module>
     </modules>
 </project>

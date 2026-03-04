@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="insert-armenian-cities" author="sam">
+
+        <!-- Երևան -->
+        <insert tableName="region"><column name="name" value="Երևան"/></insert>
+
+        <!-- Արարատի մարզ -->
+        <insert tableName="region"><column name="name" value="Արտաշատ"/></insert>
+        <insert tableName="region"><column name="name" value="Մասիս"/></insert>
+        <insert tableName="region"><column name="name" value="Վեդի"/></insert>
+        <insert tableName="region"><column name="name" value="Արարատ"/></insert>
+        <insert tableName="region"><column name="name" value="Դվին"/></insert>
+
+        <!-- Արագածոտնի մարզ -->
+        <insert tableName="region"><column name="name" value="Աշտարակ"/></insert>
+        <insert tableName="region"><column name="name" value="Ապարան"/></insert>
+        <insert tableName="region"><column name="name" value="Թալին"/></insert>
+        <insert tableName="region"><column name="name" value="Օշական"/></insert>
+
+        <!-- Գեղարքունիքի մարզ -->
+        <insert tableName="region"><column name="name" value="Գավառ"/></insert>
+        <insert tableName="region"><column name="name" value="Սևան"/></insert>
+        <insert tableName="region"><column name="name" value="Մարտունի"/></insert>
+        <insert tableName="region"><column name="name" value="Վարդենիս"/></insert>
+        <insert tableName="region"><column name="name" value="Չամբարակ"/></insert>
+        <insert tableName="region"><column name="name" value="Եղեգնաձոր (Գեղ.)"/></insert>
+
+        <!-- Լոռու մարզ -->
+        <insert tableName="region"><column name="name" value="Վանաձոր"/></insert>
+        <insert tableName="region"><column name="name" value="Ալավերդի"/></insert>
+        <insert tableName="region"><column name="name" value="Սպիտակ"/></insert>
+        <insert tableName="region"><column name="name" value="Ստեփանավան"/></insert>
+        <insert tableName="region"><column name="name" value="Տաշիր"/></insert>
+        <insert tableName="region"><column name="name" value="Ախթալա"/></insert>
+        <insert tableName="region"><column name="name" value="Շամլուղ"/></insert>
+
+        <!-- Կոտայքի մարզ -->
+        <insert tableName="region"><column name="name" value="Հրազդան"/></insert>
+        <insert tableName="region"><column name="name" value="Աբովյան"/></insert>
+        <insert tableName="region"><column name="name" value="Եղվարդ"/></insert>
+        <insert tableName="region"><column name="name" value="Ծաղկաձոր"/></insert>
+        <insert tableName="region"><column name="name" value="Նոր Հաճն"/></insert>
+        <insert tableName="region"><column name="name" value="Չարենցավան"/></insert>
+        <insert tableName="region"><column name="name" value="Բյուրեղավան"/></insert>
+
+        <!-- Շիրակի մարզ -->
+        <insert tableName="region"><column name="name" value="Գյումրի"/></insert>
+        <insert tableName="region"><column name="name" value="Արթիկ"/></insert>
+        <insert tableName="region"><column name="name" value="Մարալիկ"/></insert>
+        <insert tableName="region"><column name="name" value="Անիպեմզա"/></insert>
+
+        <!-- Սյունիքի մարզ -->
+        <insert tableName="region"><column name="name" value="Կապան"/></insert>
+        <insert tableName="region"><column name="name" value="Գորիս"/></insert>
+        <insert tableName="region"><column name="name" value="Մեղրի"/></insert>
+        <insert tableName="region"><column name="name" value="Սիսիան"/></insert>
+        <insert tableName="region"><column name="name" value="Ագարակ"/></insert>
+        <insert tableName="region"><column name="name" value="Դաստակերտ"/></insert>
+
+        <!-- Վայոց Ձորի մարզ -->
+        <insert tableName="region"><column name="name" value="Եղեգնաձոր"/></insert>
+        <insert tableName="region"><column name="name" value="Վայք"/></insert>
+        <insert tableName="region"><column name="name" value="Ջերմուկ"/></insert>
+
+        <!-- Տավուշի մարզ -->
+        <insert tableName="region"><column name="name" value="Իջևան"/></insert>
+        <insert tableName="region"><column name="name" value="Դիլիջան"/></insert>
+        <insert tableName="region"><column name="name" value="Բերդ"/></insert>
+        <insert tableName="region"><column name="name" value="Նոյեմբերյան"/></insert>
+        <insert tableName="region"><column name="name" value="Այրում"/></insert>
+
+        <!-- Արմավիրի մարզ -->
+        <insert tableName="region"><column name="name" value="Արմավիր"/></insert>
+        <insert tableName="region"><column name="name" value="Վաղարշապատ (Էջմիածին)"/></insert>
+        <insert tableName="region"><column name="name" value="Մեծամոր"/></insert>
+        <insert tableName="region"><column name="name" value="Բաղրամյան"/></insert>
+        <insert tableName="region"><column name="name" value="Հոկտեմբերյան"/></insert>
+
+    </changeSet>
+
+</databaseChangeLog>
