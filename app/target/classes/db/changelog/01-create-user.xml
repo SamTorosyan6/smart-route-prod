@@ -1,0 +1,76 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+<changeSet id="create-user" author="sam">
+<createTable tableName="user">
+    <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true"/>
+    </column>
+
+    <column name="name" type="VARCHAR(100)">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="surname" type="VARCHAR(100)">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="email" type="VARCHAR(100)">
+        <constraints nullable="false" unique="true"/>
+    </column>
+
+    <column name="phone" type="VARCHAR(100)">
+        <constraints nullable="false" unique="true"/>
+    </column>
+
+    <column name="password" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="role" type="ENUM('ADMIN','DRIVER','PASSENGER')">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="is_blocked" type="TINYINT(1)">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="created_at" type="DATETIME">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="profile_photo" type="VARCHAR(255)"/>
+
+    <column name="date_of_birth" type="DATE">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="gender" type="ENUM('MALE','FEMALE')">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="driver_license_photo" type="VARCHAR(255)">
+        <constraints unique="true"/>
+    </column>
+
+    <column name="region_id" type="INT">
+        <constraints nullable="false"/>
+    </column>
+
+    <column name="status" type="ENUM('PENDING','ACCEPTED','REJECTED')">
+        <constraints nullable="false"/>
+    </column>
+
+</createTable>
+</changeSet>
+
+<changeSet id="fk-user-region" author="sam">
+<addForeignKeyConstraint
+        baseTableName="user"
+        baseColumnNames="region_id"
+        constraintName="user_region_id_fk"
+        referencedTableName="region"
+        referencedColumnNames="id"/>
+</changeSet>
+
+        </databaseChangeLog>
