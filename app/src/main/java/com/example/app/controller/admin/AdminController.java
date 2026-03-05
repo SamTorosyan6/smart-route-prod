@@ -14,6 +14,7 @@ public class AdminController {
 
     @GetMapping("admin/home")
     public String adminHome(@AuthenticationPrincipal SpringUser springUser, ModelMap modelMap) {
+        modelMap.addAttribute("user", springUser.getUser());
         return "adminPackage/adminHome";
     }
 }
