@@ -1,6 +1,5 @@
 package com.example.app.controller.driver;
 
-import com.example.app.service.security.SpringUser;
 import com.example.model.*;
 import com.example.repository.BrandRepository;
 import com.example.repository.CarRepository;
@@ -8,10 +7,10 @@ import com.example.repository.RegionRepository;
 import com.example.service.CarPhotoService;
 import com.example.service.TripService;
 import com.example.service.UserService;
+import com.example.service.security.SpringUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +35,6 @@ import java.util.UUID;
 public class DriverController {
     private  final UserService userService;
     private final TripService tripService;
-    private final PasswordEncoder passwordEncoder;
     private final RegionRepository regionRepository;
     private final BrandRepository brandRepository;
     private final CarRepository carRepository;
@@ -92,7 +90,6 @@ public class DriverController {
         user.setStatus(UserStatus.ACCEPTED);
         user.setRegion(regionRepository.findById(regionId)
                 .orElseThrow(() -> new RuntimeException("Region not found!")));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.save(user);
 
         Car car = new Car();

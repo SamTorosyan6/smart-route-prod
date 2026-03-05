@@ -1,6 +1,7 @@
 package com.example.app.controller.admin;
 
-import com.example.app.service.security.SpringUser;
+
+import com.example.service.security.SpringUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,6 @@ public class AdminController {
 
     @GetMapping("admin/home")
     public String adminHome(@AuthenticationPrincipal SpringUser springUser, ModelMap modelMap) {
-        if(springUser != null) {
-            modelMap.addAttribute("user", springUser.getUser());
-        }
         return "adminPackage/adminHome";
     }
 }

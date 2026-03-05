@@ -1,14 +1,13 @@
 package com.example.app.controller.passenger;
 
-import com.example.app.service.security.SpringUser;
 import com.example.model.Role;
 import com.example.model.User;
 import com.example.model.UserStatus;
 import com.example.repository.RegionRepository;
 import com.example.service.UserService;
+import com.example.service.security.SpringUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,6 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class PassengerController {
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
     private final RegionRepository regionRepository;
 
     @GetMapping("passenger/home")
@@ -50,7 +48,6 @@ public class PassengerController {
         user.setStatus(UserStatus.ACCEPTED);
         user.setBlocked(false);
         user.setRatingAverage(BigDecimal.ZERO);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRegion(regionRepository.findById(regionId)
                 .orElseThrow(() -> new RuntimeException("Region not found!")));
 
