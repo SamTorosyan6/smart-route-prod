@@ -51,7 +51,7 @@ public class DriverController {
         return "driverPackage/driverHome";
     }
 
-    @GetMapping("/register/driver")
+    @GetMapping("/driver/register")
     public String registerDriver(@RequestParam(required = false)String msg, ModelMap modelMap) {
         modelMap.addAttribute("msg",msg);
         modelMap.addAttribute("regions",regionRepository.findAll());
@@ -59,7 +59,7 @@ public class DriverController {
         return "driverPackage/registerDriver";
     }
 
-    @PostMapping("/register/driver")
+    @PostMapping("/driver/register")
     public String registerDriver(@ModelAttribute User user,
                                  @RequestParam Integer regionId,
                                  @RequestParam String numberPlate,
@@ -67,7 +67,7 @@ public class DriverController {
                                  @RequestParam Integer brandId,
                                  @RequestParam("licensePhoto") MultipartFile licensePhoto){
         if(userService.findByEmail(user.getEmail()).isPresent()){
-            return "redirect:/register/driver?msg=Email already exists!";
+            return "redirect:/driver/register?msg=Email already exists!";
         }
 
         if (!licensePhoto.isEmpty()) {
@@ -80,7 +80,7 @@ public class DriverController {
                 Files.copy(licensePhoto.getInputStream(), dir.resolve(filename));
                 user.setDriverLicensePhoto(licenseUploadPath + filename);
             } catch (IOException e) {
-                return "redirect:/register/driver?msg=License photo upload failed!";
+                return "redirect:/driver/register?msg=License photo upload failed!";
             }
         }
 
@@ -127,20 +127,20 @@ public class DriverController {
         return "redirect:/driver/home?msg=Photos uploaded! Waiting for admin approval.";
     }
 
-    @GetMapping("/driverTrips")
+    @GetMapping("/driver/trips")
     public String driverTrips(@AuthenticationPrincipal SpringUser springUser, ModelMap modelMap) {
         User user = springUser.getUser();
         modelMap.addAttribute("trips", tripService.findByDriver(user));
         return "driverPackage/driverTrips";
     }
 
-    @GetMapping("/addTrip")
+    @GetMapping("/driver/addTrip")
     public String addTripPage(ModelMap modelMap) {
     modelMap.addAttribute("trip",new Trip());
         return "driverPackage/addTrip";
     }
 
-    @PostMapping("/addTrip")
+    @PostMapping("/driver/addTrip")
     public String addTrip(@ModelAttribute Trip trip,
                           @AuthenticationPrincipal SpringUser springUser){
 

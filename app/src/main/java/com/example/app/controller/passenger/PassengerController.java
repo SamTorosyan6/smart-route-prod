@@ -31,18 +31,18 @@ public class PassengerController {
         return "passengerPackage/passengerHome";
     }
 
-    @GetMapping("/register/passenger")
+    @GetMapping("/passenger/register")
     public String registerPassenger(@RequestParam(required = false) String msg, ModelMap modelMap) {
         modelMap.addAttribute("msg",msg);
         modelMap.addAttribute("regions",regionRepository.findAll());
         return "passengerPackage/registerPassenger";
     }
 
-    @PostMapping("/register/passenger")
+    @PostMapping("/passenger/register")
     public String registerPassenger(@ModelAttribute User user,
                                     @RequestParam Integer regionId){
         if(userService.findByEmail(user.getEmail()).isPresent()){
-            return "redirect:/register/passenger?msg=Email already in exists!";
+            return "redirect:/passenger/register?msg=Email already in exists!";
         }
         user.setRole(Role.PASSENGER);
         user.setStatus(UserStatus.ACCEPTED);
