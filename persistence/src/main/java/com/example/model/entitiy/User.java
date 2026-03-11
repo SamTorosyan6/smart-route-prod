@@ -1,5 +1,8 @@
-package com.example.model;
+package com.example.model.entitiy;
 
+import com.example.model.Gender;
+import com.example.model.Role;
+import com.example.model.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -86,6 +89,7 @@ public class User {
     @OneToMany(mappedBy = "reviewer")
     private List<Feedback> givenFeedbacks;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "driver")
     private List<Car> cars;
 }

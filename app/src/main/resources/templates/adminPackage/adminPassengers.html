@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Passengers</title>
+</head>
+<body>
+<table border="1">
+  <tr>
+    <th>Id</th>
+    <!--        <th>Profile Photo</th>-->
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Password</th>
+    <th>Role</th>
+    <th>Is blocked</th>
+    <th>Crated At</th>
+    <th>Date of birth</th>
+    <th>Gender</th>
+    <th>Region</th>
+    <th>Action</th>
+  </tr>
+  <tr th:each="passenger : ${passengers}">
+    <td th:text="${passenger.id}"></td>
+    <td th:text="${passenger.name}"></td>
+    <td th:text="${passenger.surname}"></td>
+    <td th:text="${passenger.email}"></td>
+    <td th:text="${passenger.phone}"></td>
+    <td th:text="${passenger.password}"></td>
+    <td th:text="${passenger.role}"></td>
+    <td th:text="${passenger.blocked ? 'Blocked' : 'Active'}"></td>
+    <td th:text="${passenger.createdAt}"></td>
+    <td th:text="${passenger.dateOfBirth}"></td>
+    <td th:text="${passenger.gender}"></td>
+    <td th:text="${passenger.region.name}"></td>
+    <td>
+      <form th:action="@{'/admin/users/' + ${passenger.id} + '/block'}" method="post">
+        <button type="submit" th:text="${passenger.blocked} ? 'Unblock' : 'Block'"></button>
+      </form>
+    </td>
+  </tr>
+</table>
+<div th:if="${passengers.totalPages > 0}">
+  <a th:each="pageNumber : ${pageNumbers}"
+     th:href="@{/admin/passengers(size=${passengers.size}, page=${pageNumber})}"
+     th:text="${pageNumber}"
+     th:class="${pageNumber==passengers.number + 1} ? active"></a>
+</div>
+</body>
+</html>

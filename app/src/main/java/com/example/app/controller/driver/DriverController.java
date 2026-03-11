@@ -1,6 +1,12 @@
 package com.example.app.controller.driver;
 
-import com.example.model.*;
+
+import com.example.model.Role;
+import com.example.model.TripStatus;
+import com.example.model.UserStatus;
+import com.example.model.entitiy.Car;
+import com.example.model.entitiy.Trip;
+import com.example.model.entitiy.User;
 import com.example.repository.BrandRepository;
 import com.example.repository.CarRepository;
 import com.example.repository.RegionRepository;
@@ -51,7 +57,7 @@ public class DriverController {
         return "driverPackage/driverHome";
     }
 
-    @GetMapping("/driver/register")
+    @GetMapping("/register/driver")
     public String registerDriver(@RequestParam(required = false)String msg, ModelMap modelMap) {
         modelMap.addAttribute("msg",msg);
         modelMap.addAttribute("regions",regionRepository.findAll());
@@ -59,7 +65,7 @@ public class DriverController {
         return "driverPackage/registerDriver";
     }
 
-    @PostMapping("/driver/register")
+    @PostMapping("/register/driver")
     public String registerDriver(@ModelAttribute User user,
                                  @RequestParam Integer regionId,
                                  @RequestParam String numberPlate,
@@ -67,7 +73,7 @@ public class DriverController {
                                  @RequestParam Integer brandId,
                                  @RequestParam("licensePhoto") MultipartFile licensePhoto){
         if(userService.findByEmail(user.getEmail()).isPresent()){
-            return "redirect:/driver/register?msg=Email already exists!";
+            return "redirect:/register/driver?msg=Email already exists!";
         }
 
         if (!licensePhoto.isEmpty()) {
@@ -78,9 +84,9 @@ public class DriverController {
                 }
                 String filename = UUID.randomUUID() + "_" + licensePhoto.getOriginalFilename();
                 Files.copy(licensePhoto.getInputStream(), dir.resolve(filename));
-                user.setDriverLicensePhoto(licenseUploadPath + filename);
+                user.setDriverLicensePhoto(filename);
             } catch (IOException e) {
-                return "redirect:/driver/register?msg=License photo upload failed!";
+                return "redirect:/register/driver?msg=License photo upload failed!";
             }
         }
 

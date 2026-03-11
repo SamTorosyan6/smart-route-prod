@@ -1,6 +1,6 @@
 package com.example.repository;
 
-import com.example.model.Region;
+import com.example.model.entitiy.Region;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RegionRepository extends JpaRepository<Region, Integer> {

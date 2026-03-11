@@ -1,8 +1,8 @@
 package com.example.app.controller.passenger;
 
 import com.example.model.Role;
-import com.example.model.User;
 import com.example.model.UserStatus;
+import com.example.model.entitiy.User;
 import com.example.repository.RegionRepository;
 import com.example.service.UserService;
 import com.example.service.security.SpringUser;
@@ -31,18 +31,18 @@ public class PassengerController {
         return "passengerPackage/passengerHome";
     }
 
-    @GetMapping("/passenger/register")
+    @GetMapping("/register/passenger")
     public String registerPassenger(@RequestParam(required = false) String msg, ModelMap modelMap) {
         modelMap.addAttribute("msg",msg);
         modelMap.addAttribute("regions",regionRepository.findAll());
         return "passengerPackage/registerPassenger";
     }
 
-    @PostMapping("/passenger/register")
+    @PostMapping("/register/passenger")
     public String registerPassenger(@ModelAttribute User user,
                                     @RequestParam Integer regionId){
         if(userService.findByEmail(user.getEmail()).isPresent()){
-            return "redirect:/passenger/register?msg=Email already in exists!";
+            return "redirect:/register/passenger?msg=Email already in exists!";
         }
         user.setRole(Role.PASSENGER);
         user.setStatus(UserStatus.ACCEPTED);

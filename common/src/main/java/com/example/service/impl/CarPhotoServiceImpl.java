@@ -1,7 +1,7 @@
 package com.example.service.impl;
 
-import com.example.model.Car;
-import com.example.model.CarPhoto;
+import com.example.model.entitiy.Car;
+import com.example.model.entitiy.CarPhoto;
 import com.example.repository.CarPhotoRepository;
 import com.example.repository.CarRepository;
 import com.example.service.CarPhotoService;
