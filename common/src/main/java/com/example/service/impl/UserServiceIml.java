@@ -7,6 +7,7 @@ import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class UserServiceIml implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
     @Override
     public void save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -31,7 +33,8 @@ public class UserServiceIml implements UserService {
 
 
     @Override
-    public Page<User> findAllByRole(Role role, Pageable pageable) {
+    public Page<User> findAllByRole(Role role, int currentPage, int pageSize) {
+        Pageable pageable = PageRequest.of(currentPage - 1, pageSize);
         return userRepository.findAllByRole(role, pageable);
     }
 
@@ -48,12 +51,10 @@ public class UserServiceIml implements UserService {
 
     @Override
     public void changeUserStatus(Integer id, UserStatus userStatus) {
-       User user = userRepository.findById(id).orElseThrow(()
+        User user = userRepository.findById(id).orElseThrow(()
                 -> new RuntimeException("User not found"));
-       user.setStatus(userStatus);
-       userRepository.save(user);
-
-
+        user.setStatus(userStatus);
+        userRepository.save(user);
     }
 
     @Override

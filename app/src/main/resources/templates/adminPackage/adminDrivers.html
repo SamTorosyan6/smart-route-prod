@@ -36,7 +36,6 @@
         <td th:text="${driver.dateOfBirth}"></td>
         <td th:text="${driver.gender}"></td>
         <td th:text="${driver.region.name}"></td>
-        <td th:text="${driver.}"></td>
         <td>
             <form th:action="@{/admin/changeUserStatus}" method="post">
                 <input type="hidden" name="id" th:value="${driver.id}">

@@ -21,11 +21,11 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
         String message;
         Throwable cause = exception.getCause();
 
-        if(cause instanceof BlockedUserException ||
-           cause instanceof AccountPendingException ||
-           cause instanceof AccountRejectedException) {
+        if (cause instanceof BlockedUserException ||
+                cause instanceof AccountPendingException ||
+                cause instanceof AccountRejectedException) {
             message = cause.getMessage();
-        }else {
+        } else {
             message = "Invalid username or password";
         }
 
