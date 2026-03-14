@@ -1,9 +1,8 @@
 package com.example.service;
 
-import com.example.model.Role;
 import com.example.model.UserStatus;
 import com.example.model.entitiy.User;
-import org.springframework.data.domain.Page;
+import org.springframework.ui.ModelMap;
 
 import java.util.Optional;
 
@@ -13,7 +12,9 @@ public interface UserService {
 
     Optional<User> findByEmail(String email);
 
-    Page<User> findAllByRole(Role role, int currentPage, int pageSize);
+    String loadDrivers(ModelMap modelMap,int page,int size);
+
+    String loadPassengers(ModelMap modelMap,int page,int size);
 
     Optional<User> findById(Integer id);
 

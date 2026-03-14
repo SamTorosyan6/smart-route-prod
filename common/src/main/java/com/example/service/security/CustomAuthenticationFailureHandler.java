@@ -21,14 +21,18 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
         String message;
         Throwable cause = exception.getCause();
 
-        if (cause instanceof BlockedUserException ||
-                cause instanceof AccountPendingException ||
-                cause instanceof AccountRejectedException) {
+        if (isAccountStatusException(cause)) {
             message = cause.getMessage();
         } else {
             message = "Invalid username or password";
         }
 
         response.sendRedirect("/loginPage?error=" + message);
+    }
+
+    private boolean isAccountStatusException (Throwable cause){
+        return (cause instanceof BlockedUserException ||
+                cause instanceof AccountPendingException ||
+                cause instanceof AccountRejectedException);
     }
 }
