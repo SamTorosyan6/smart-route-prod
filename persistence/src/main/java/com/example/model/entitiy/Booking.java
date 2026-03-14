@@ -1,5 +1,6 @@
-package com.example.model;
+package com.example.model.entitiy;
 
+import com.example.model.BookingStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

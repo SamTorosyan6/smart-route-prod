@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drivers</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Password</th>
+        <th>Role</th>
+        <th>Is blocked</th>
+        <th>Crated At</th>
+        <th>Date of birth</th>
+        <th>Gender</th>
+        <th>Region</th>
+        <th>Status</th>
+        <th>Driver License Photo</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="driver : ${drivers}">
+        <td th:text="${driver.id}"></td>
+        <td th:text="${driver.name}"></td>
+        <td th:text="${driver.surname}"></td>
+        <td th:text="${driver.email}"></td>
+        <td th:text="${driver.phone}"></td>
+        <td th:text="${driver.password}"></td>
+        <td th:text="${driver.role}"></td>
+        <td th:text="${driver.isBlocked() ? 'Blocked': 'Active'}"></td>
+        <td th:text="${driver.createdAt}"></td>
+        <td th:text="${driver.dateOfBirth}"></td>
+        <td th:text="${driver.gender}"></td>
+        <td th:text="${driver.region.name}"></td>
+        <td>
+            <form th:action="@{/admin/changeUserStatus}" method="post">
+                <input type="hidden" name="id" th:value="${driver.id}">
+            <select name="userStatus">
+                <option th:each="status : ${userStatus}"
+                        th:value="${status}"
+                        th:text="${status}"
+                        th:selected="${status == driver.status}">
+                </option>
+            </select>
+                <button type="submit">Change Status</button>
+            </form>
+        </td>
+        <td>
+            <img th:if="${driver.getDriverLicensePhoto() != null && !driver.getDriverLicensePhoto().equals('')}"
+                 th:src="@{/image/get(photo=${driver.getDriverLicensePhoto()})}" width="50" >
+            <img th:if="${driver.getDriverLicensePhoto() == null || driver.getDriverLicensePhoto().equals('')}"
+                 th:src="@{/images/driver-license.jpg}" width="50" >
+        </td>
+
+        <td>
+            <form th:action="@{'/admin/users/' + ${driver.id} + '/block'}" method="post">
+                <button type="submit" th:text="${driver.blocked} ? 'Unblock' : 'Block'"></button>
+            </form>
+        </td>
+    </tr>
+</table>
+<div th:if="${drivers.totalPages > 0}">
+    <a th:each="pageNumber : ${pageNumbers}"
+       th:href="@{/admin/drivers(size=${drivers.size}, page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==drivers.number + 1} ? active"></a>
+</div>
+</body>
+</html>

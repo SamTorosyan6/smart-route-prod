@@ -1,7 +1,7 @@
 package com.example.service.impl;
 
-import com.example.model.Trip;
-import com.example.model.User;
+import com.example.model.entitiy.Trip;
+import com.example.model.entitiy.User;
 import com.example.repository.TripRepository;
 import com.example.service.TripService;
 import lombok.RequiredArgsConstructor;

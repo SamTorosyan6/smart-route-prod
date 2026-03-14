@@ -1,6 +1,7 @@
 package com.example.service.security;
 
-import com.example.model.User;
+
+import com.example.model.entitiy.User;
 import lombok.Getter;
 import org.springframework.security.core.authority.AuthorityUtils;
 

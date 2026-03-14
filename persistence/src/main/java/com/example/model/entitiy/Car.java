@@ -1,9 +1,10 @@
-package com.example.model;
+package com.example.model.entitiy;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -29,6 +30,7 @@ public class Car {
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id", nullable = false)
     private User driver;

@@ -1,5 +1,6 @@
 package com.example.app.config;
 
+import com.example.service.security.CustomAuthenticationFailureHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -38,6 +39,7 @@ public class WebSecurityConfig {
                 .formLogin(form ->
                         form.loginPage("/loginPage")
                                 .loginProcessingUrl("/login")
+                                .failureHandler(new CustomAuthenticationFailureHandler())
                                 .defaultSuccessUrl("/successLogin", true)
                                 .permitAll()
                 )
